@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>247heatmap widget demo</title>
+  <meta name="description" content="Dark and light live stock heatmap embeds, side by side with the heatmap-247 web component.">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #101216;
+      color: #e7edf5;
+      font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: #9ec1ff; }
+    header, main { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 32px 0 8px; }
+    h1 { font-size: 1.8rem; line-height: 1.2; margin: 0 0 8px; }
+    h2 { font-size: 1.15rem; margin: 28px 0 8px; }
+    p { margin: 0 0 12px; color: #c5d0de; }
+    .links { display: flex; flex-wrap: wrap; gap: 12px 16px; margin: 12px 0 0; font-size: 0.95rem; }
+    .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    figure { margin: 0; }
+    img, iframe { width: 100%; border: 0; border-radius: 10px; background: #101216; }
+    img { display: block; }
+    figcaption, .note { color: #9aa6b8; font-size: 0.85rem; }
+    pre {
+      overflow: auto;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #0c0e12;
+      color: #d5deea;
+      font-size: 0.82rem;
+    }
+    footer { width: min(1120px, calc(100% - 32px)); margin: 28px auto 40px; color: #9aa6b8; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>247heatmap widget</h1>
+    <p>Live S&amp;P 500, Nasdaq-100, Dow 30, and custom watchlist heatmaps. No API key and no login. Quotes keep moving after hours, overnight, and on weekends.</p>
+    <p class="links">
+      <a href="https://247heatmap.com/embed/">Embed configurator</a>
+      <a href="https://247heatmap.com/custom/">Custom watchlist builder</a>
+      <a href="https://youtu.be/7zjK4HleVu8">55-second walkthrough</a>
+      <a href="https://247heatmap.com/">247heatmap.com</a>
+    </p>
+  </header>
+  <main>
+    <h2>Live previews</h2>
+    <div class="grid">
+      <figure>
+        <img src="../assets/01-homepage-heatmap.png" alt="Live 24/7 S&amp;P 500 stock heatmap on 247heatmap.com" width="1270" height="760">
+        <figcaption>S&amp;P 500 heatmap on the live site.</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/04-custom-map.png" alt="Custom watchlist heatmap mixing stocks, ETFs, and crypto" width="1270" height="760">
+        <figcaption>Custom watchlist at 247heatmap.com/custom/.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Plain HTML iframes</h2>
+    <div class="grid">
+      <div>
+        <iframe src="https://247heatmap.com/embed/sp500/dark/" height="480" style="border:0;min-height:360px;background:#101216;" title="S&amp;P 500 heat map — 24/7 Heatmap" loading="lazy"></iframe>
+        <p class="note">Live market map by <a href="https://247heatmap.com/" target="_blank" rel="noopener">247heatmap.com</a></p>
+      </div>
+      <div>
+        <iframe src="https://247heatmap.com/embed/sp500/light/" height="480" style="border:0;min-height:360px;background:#f4f6f8;" title="S&amp;P 500 heat map — 24/7 Heatmap" loading="lazy"></iframe>
+        <p class="note">Live market map by <a href="https://247heatmap.com/" target="_blank" rel="noopener">247heatmap.com</a></p>
+      </div>
+    </div>
+
+    <h2>Web component</h2>
+    <p>The script below is the built IIFE. It registers <code>&lt;heatmap-247&gt;</code> once, including when the script runs twice.</p>
+    <div class="grid">
+      <heatmap-247 map="nasdaq-100" theme="dark" height="480px"></heatmap-247>
+      <heatmap-247 map="dow-30" theme="light" height="480px"></heatmap-247>
+    </div>
+    <h2>Custom tickers</h2>
+    <heatmap-247 map="custom" tickers="NVDA,AAPL,MSFT,GOOGL,BTC,ETH" live="true" height="520px"></heatmap-247>
+    <h2>Attribution off</h2>
+    <p class="note">This removes the host-page credit under the frame. The map inside the iframe still includes 247heatmap’s own “Powered by” link.</p>
+    <heatmap-247 map="sp500" theme="dark" attribution="false" height="420px"></heatmap-247>
+    <pre>&lt;heatmap-247 map="sp500" theme="dark" attribution="false" height="420px"&gt;&lt;/heatmap-247&gt;</pre>
+  </main>
+  <footer>
+    <p>For information only. Not investment advice. Prices can differ from the cash market, especially overnight and on weekends.</p>
+    <p><a href="https://x.com/247heatmap">X</a> · <a href="https://www.youtube.com/@247heatmap">YouTube</a> · MIT License</p>
+  </footer>
+  <script src="../dist/heatmap-247.iife.js"></script>
+</body>
+</html>

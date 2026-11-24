@@ -1,0 +1,94 @@
+{
+  "name": "247heatmap-widget",
+  "version": "1.0.0",
+  "description": "Free, zero-API-key embeddable live 24/7 stock, ETF & crypto heatmap widget (Web Component, React, and HTML iframe) powered by 247heatmap.com",
+  "license": "MIT",
+  "author": "247heatmap.com",
+  "homepage": "https://247heatmap.com/embed/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/247heatmap/247heatmap-widget.git"
+  },
+  "bugs": {
+    "url": "https://github.com/247heatmap/247heatmap-widget/issues"
+  },
+  "keywords": [
+    "stock-heatmap",
+    "stock-market",
+    "crypto-heatmap",
+    "heatmap",
+    "widget",
+    "fintech",
+    "trading",
+    "finance",
+    "embed",
+    "web-component",
+    "react",
+    "sp500",
+    "nasdaq"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "./dist/index.js",
+    "./dist/index.cjs",
+    "./dist/web-component.js",
+    "./dist/heatmap-247.iife.js"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "unpkg": "./dist/heatmap-247.iife.js",
+  "jsdelivr": "./dist/heatmap-247.iife.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js",
+      "require": "./dist/react.cjs"
+    },
+    "./web-component": {
+      "types": "./dist/web-component.d.ts",
+      "import": "./dist/web-component.js",
+      "default": "./dist/web-component.js"
+    },
+    "./iife": "./dist/heatmap-247.iife.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "examples",
+    "assets",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm run typecheck && npm run build && npm run test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^18.3.18",
+    "@types/react-dom": "^18.3.5",
+    "esbuild": "^0.25.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.7.2"
+  }
+}
